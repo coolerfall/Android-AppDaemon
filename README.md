@@ -7,6 +7,7 @@ Usage
 =====
 * Copy the `daemon` executable file into assets, then use `Daemon.run(context, daemonServiceClazz, intervalTime)` to run the daemon.
 * You need to add `android:exported="true"` to your daemon service in manifest so that daemon can start up your daemon service.
+* If you want to monitor the uninstall of app, see alse [Android-AppUninstallWatcher][1].
 
 License
 =======
@@ -24,3 +25,5 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[1]: https://github.com/Coolerfall/Android-AppUninstallWatcher
