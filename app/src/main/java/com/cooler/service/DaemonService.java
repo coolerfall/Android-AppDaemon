@@ -17,4 +17,10 @@ public class DaemonService extends Service {
 	public IBinder onBind(Intent intent) {
 		return null;
 	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		/* do something here */
+		return super.onStartCommand(intent, flags, startId);
+	}
 }
