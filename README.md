@@ -5,7 +5,7 @@ App process daemon, used to keep your app alive.
 
 Usage
 =====
-* Copy the `daemon` executable file into assets, then use `Daemon.run(context, daemonServiceClazz, intervalTime)` to run the daemon.
+* Copy the `daemon` executable file into assets, then use `Daemon.run(context, daemonServiceClazz, intervalTime)` to run the daemon, then you can do something in onStartCommand of daemon service.
 * You need to add `android:exported="true"` to your daemon service in manifest so that daemon can start up your daemon service.
 * If you want to monitor the uninstall of app, see also [Android-AppUninstallWatcher][1].
 
