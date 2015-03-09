@@ -15,15 +15,15 @@ import java.io.IOException;
 public class Daemon {
 	private static final String TAG = Daemon.class.getSimpleName();
 
+	private static final String BIN_DIR_NAME = "bin";
 	private static final String DAEMON_BIN_NAME = "daemon";
 
 	public static final int INTERVAL_ONE_MINUTE = 60;
 	public static final int INTERVAL_ONE_HOUR = 60 * 60;
 
 	/** start daemon */
-	private static void start(Context context, Class<?> daemonClazzName,
-			int interval, String daemonFileDir) {
-		String cmd = context.getDir(Command.BIN_DIR_NAME, Context.MODE_PRIVATE)
+	private static void start(Context context, Class<?> daemonClazzName, int interval) {
+		String cmd = context.getDir(BIN_DIR_NAME, Context.MODE_PRIVATE)
 				.getAbsolutePath() + File.separator + DAEMON_BIN_NAME;
 
 		/* create the command string */
@@ -35,17 +35,6 @@ public class Daemon {
 		cmdBuilder.append(daemonClazzName.getName());
 		cmdBuilder.append(" -t ");
 		cmdBuilder.append(interval);
-
-		if (daemonFileDir != null) {
-			/* to check if the daemon file dir existed */
-			File dir = new File(daemonFileDir);
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-
-			cmdBuilder.append(" -d ");
-			cmdBuilder.append(daemonFileDir);
-		}
 
 		try {
 			Runtime.getRuntime().exec(cmdBuilder.toString()).waitFor();
@@ -60,28 +49,15 @@ public class Daemon {
 	 * @param context            context
 	 * @param daemonServiceClazz the name of daemon service class
 	 * @param interval           the interval to check
-	 * @param daemonFileDir      directory of daemon file
 	 */
-	public static void run(final Context context,  final Class<?> daemonServiceClazz,
-						final int interval, final String daemonFileDir) {
+	public static void run(final Context context, final Class<?> daemonServiceClazz,
+	                       final int interval) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Command.install(context, DAEMON_BIN_NAME);
-				start(context, daemonServiceClazz, interval, daemonFileDir);
+				Command.install(context, BIN_DIR_NAME, DAEMON_BIN_NAME);
+				start(context, daemonServiceClazz, interval);
 			}
 		}).start();
-	}
-
-	/**
-	 * Run daemon process.
-	 *
-	 * @param context            context
-	 * @param daemonServiceClazz the name of daemon service class
-	 * @param interval           the interval to check
-	 */
-	public static void run(final Context context,
-						final Class<?> daemonServiceClazz, final int interval) {
-		run(context, daemonServiceClazz, interval, null);
 	}
 }
