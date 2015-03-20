@@ -1,10 +1,10 @@
-package com.cooler.service;
+package com.coolerfall.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.cooler.daemon.Daemon;
+import com.coolerfall.daemon.Daemon;
 
 public class DaemonService extends Service {
 	@Override

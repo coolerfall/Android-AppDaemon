@@ -1,11 +1,11 @@
-package com.cooler.ui;
+package com.coolerfall.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.cooler.service.DaemonService;
-import com.cooler.daemon.R;
+import com.coolerfall.service.DaemonService;
+import com.coolerfall.daemon.R;
 
 public class MainActivity extends ActionBarActivity {
 

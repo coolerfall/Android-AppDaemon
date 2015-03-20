@@ -1,4 +1,4 @@
-package com.cooler.daemon;
+package com.coolerfall.daemon;
 
 import android.content.Context;
 import android.content.res.AssetManager;
