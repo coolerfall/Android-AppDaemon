@@ -11,12 +11,37 @@ android {
 		versionCode 1
 		versionName "1.0"
 	}
+
+
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
+
+	tasks.withType(JavaCompile) {
+		compileTask -> compileTask.dependsOn 'ndkBuild', 'copyJniLibs'
+	}
+
+	sourceSets {
+		main {
+			jni.srcDirs = []
+			jniLibs.srcDirs = ['src/main/jniLibs']
+		}
+	}
+}
+
+task ndkBuild(type: Exec) {
+	def ndkDir = project.plugins.findPlugin('com.android.application').getNdkFolder()
+	commandLine "$ndkDir/ndk-build.cmd", '-C', 'src/main/jni',
+			"NDK_OUT=$buildDir/ndk/obj",
+			"NDK_APP_DST_DIR=$buildDir/ndk/libs/\$(TARGET_ARCH_ABI)"
+}
+
+task copyJniLibs(type: Copy) {
+	from fileTree(dir: file(buildDir.absolutePath + '/ndk/libs'), include: '**/*')
+	into file('src/main/jniLibs')
 }
 
 dependencies {
