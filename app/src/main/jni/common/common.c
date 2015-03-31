@@ -180,20 +180,3 @@ char *get_name_by_pid(pid_t pid)
 	return NULL;
 }
 
-/*
-* Register native methods for one class.
-*/
-int register_native_methods(JNIEnv* env, const char* class_name,
-        JNINativeMethod* methods, int num_methods)
-{
-	jclass clazz;
-	clazz = (*env)->FindClass(env, class_name);
-	if (clazz == NULL) {
-		return JNI_FALSE;
-	}
-	if ((*env)->RegisterNatives(env, clazz, methods, num_methods) < 0) {
-		return JNI_FALSE;
-	}
-
-	return JNI_TRUE;
-}
