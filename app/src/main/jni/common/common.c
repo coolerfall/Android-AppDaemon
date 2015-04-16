@@ -180,3 +180,17 @@ char *get_name_by_pid(pid_t pid)
 	return NULL;
 }
 
+
+/**
+ * Use `select` to sleep with specidied second and microsecond.
+ */
+void select_sleep(long sec, long msec)
+{
+	struct timeval timeout;
+
+	timeout.tv_sec = sec;
+	timeout.tv_usec = msec;
+
+	select(0, NULL, NULL, NULL, &timeout);
+}
+

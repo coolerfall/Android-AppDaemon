@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
 
 		while(sig_running)
 		{
-			sleep(interval < SLEEP_INTERVAL ? SLEEP_INTERVAL : interval);
+			select_sleep(interval < SLEEP_INTERVAL ? SLEEP_INTERVAL : interval, 0);
 
 			LOGD(LOG_TAG, "check the service once");
 

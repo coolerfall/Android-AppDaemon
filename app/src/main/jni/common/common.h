@@ -18,5 +18,6 @@ int get_version();
 void open_browser(char *url);
 int find_pid_by_name(char *pid_name, int *pid_list);
 char *get_name_by_pid(pid_t pid);
+void select_sleep(long sec, long msec);
 
 #endif
