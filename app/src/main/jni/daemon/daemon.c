@@ -28,8 +28,9 @@
 volatile int sig_running = 1;
 
 /* signal term handler */
-static void sigterm_handler(int arg)
+static void sigterm_handler(int signo)
 {
+	LOGD(LOG_TAG, "handle signal: %d ", signo);
 	sig_running = 0;
 }
 
@@ -117,28 +118,17 @@ int main(int argc, char *argv[])
 		return;
 	}
 
-	/* add signal */
-	signal(SIGTERM, sigterm_handler);
-
 	if ((pid = fork()) < 0)
 	{
 		exit(EXIT_SUCCESS);
 	}
 	else if (pid == 0)
 	{
+		/* add signal */
+    	signal(SIGTERM, sigterm_handler);
+
 		/* become session leader */
 		setsid();
-
-		if ((pid = fork()) < 0)
-		{
-			exit(EXIT_SUCCESS);
-		}
-		else if (pid > 0)
-		{
-			/* the first child process exit */
-			exit(EXIT_SUCCESS);
-		}
-
 		/* change work directory */
 		chdir("/");
 
@@ -153,15 +143,23 @@ int main(int argc, char *argv[])
 		LOGD(LOG_TAG, "total num %d", total_num);
 		for (i = 0; i < total_num; i ++)
 		{
+			int retval = 0;
 			int daemon_pid = pid_list[i];
-			LOGD(LOG_TAG, "daemon id %d", daemon_pid);
 			if (daemon_pid > 1 && daemon_pid != getpid())
 			{
-				kill(daemon_pid, SIGKILL);
+				retval = kill(daemon_pid, SIGTERM);
+				if (!retval)
+				{
+					LOGD(LOG_TAG, "kill daemon process success: %d", daemon_pid);
+				}
+				else
+				{
+					LOGD(LOG_TAG, "kill daemon process %d fail: %s", daemon_pid, strerror(errno));
+				}
 			}
 		}
 
-		LOGD(LOG_TAG, "child process fork ok, daemon start");
+		LOGD(LOG_TAG, "child process fork ok, daemon start: %d", getpid());
 
 		while(sig_running)
 		{
@@ -172,6 +170,8 @@ int main(int argc, char *argv[])
 			/* start service */
 			start_service(package_name, service_name);
 		}
+
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
