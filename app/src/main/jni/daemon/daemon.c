@@ -155,6 +155,7 @@ int main(int argc, char *argv[])
 				else
 				{
 					LOGD(LOG_TAG, "kill daemon process %d fail: %s", daemon_pid, strerror(errno));
+					exit(EXIT_SUCCESS);
 				}
 			}
 		}
