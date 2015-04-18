@@ -177,5 +177,6 @@ int main(int argc, char *argv[])
 	else
 	{
 		/* parent process */
+		exit(EXIT_SUCCESS);
 	}
 }
