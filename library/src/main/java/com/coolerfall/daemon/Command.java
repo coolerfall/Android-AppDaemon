@@ -46,7 +46,7 @@ public class Command {
 	 * @param  file    the file to copy to
 	 * @param  mode    mode of file
 	 *
-	 * @throws java.io.IOException
+	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	public static void copyRawFile(Context context, int resid, File file, String mode)
@@ -63,7 +63,7 @@ public class Command {
 	 * @param  file           the file to copy to
 	 * @param  mode           mode of file
 	 *
-	 * @throws java.io.IOException
+	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	public static void copyAssets(Context context, String assetsFilename, File file, String mode)

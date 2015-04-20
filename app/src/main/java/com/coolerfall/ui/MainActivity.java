@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
+import com.coolerfall.sample.R;
 import com.coolerfall.service.DaemonService;
-import com.coolerfall.daemon.R;
 
 public class MainActivity extends ActionBarActivity {
 
