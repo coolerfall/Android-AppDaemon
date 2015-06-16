@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 	else if (pid == 0)
 	{
 		/* add signal */
-    	signal(SIGTERM, sigterm_handler);
+		signal(SIGTERM, sigterm_handler);
 
 		/* become session leader */
 		setsid();
