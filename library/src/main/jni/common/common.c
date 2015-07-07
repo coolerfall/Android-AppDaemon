@@ -189,7 +189,7 @@ void select_sleep(long sec, long msec)
 	struct timeval timeout;
 
 	timeout.tv_sec = sec;
-	timeout.tv_usec = msec;
+	timeout.tv_usec = msec * 1000;
 
 	select(0, NULL, NULL, NULL, &timeout);
 }

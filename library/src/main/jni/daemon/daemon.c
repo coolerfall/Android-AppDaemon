@@ -14,6 +14,7 @@
 #include <sys/system_properties.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -71,6 +72,10 @@ static void start_service(char *package_name, char *service_name)
 
 		LOGD(LOG_TAG , "exit start-service child process");
 		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
 	}
 }
 
@@ -164,9 +169,10 @@ int main(int argc, char *argv[])
 
 		while(sig_running)
 		{
-			select_sleep(interval < SLEEP_INTERVAL ? SLEEP_INTERVAL : interval, 0);
+			interval = interval < SLEEP_INTERVAL ? SLEEP_INTERVAL : interval;
+			select_sleep(interval, 0);
 
-			LOGD(LOG_TAG, "check the service once");
+			LOGD(LOG_TAG, "check the service once, interval: %d", interval);
 
 			/* start service */
 			start_service(package_name, service_name);
