@@ -13,7 +13,7 @@ Download
 ========
 If you are building with Gradle, simply add the following line to the dependencies section of your build.gradle file:
 
-    compile 'com.coolerfall:android-app-daemon:1.1.1'
+    compile 'com.coolerfall:android-app-daemon:1.2.0'
 
 License
 =======
