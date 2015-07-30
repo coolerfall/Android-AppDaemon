@@ -9,6 +9,10 @@ Usage
 * You need to add `android:exported="true"` to your daemon service in manifest so that daemon can start up your daemon service.
 * If you want to monitor the uninstall of app, see also [Android-AppUninstallWatcher][1].
 
+Note
+====
+This library dosen't work on all phones, such as xiaomi phones.
+
 Download
 ========
 If you are building with Gradle, simply add the following line to the dependencies section of your build.gradle file:
