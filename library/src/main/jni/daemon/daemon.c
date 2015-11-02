@@ -88,6 +88,8 @@ int main(int argc, char *argv[])
 	char *daemon_file_dir = NULL;
 	int interval = SLEEP_INTERVAL;
 
+	LOGI(LOG_TAG, "Copyright (c) 2015, Vincent Cheung<coolingfall@gmail.com>");
+
 	if (argc < 7)
 	{
 		LOGE(LOG_TAG, "usage: %s -p package-name -s "

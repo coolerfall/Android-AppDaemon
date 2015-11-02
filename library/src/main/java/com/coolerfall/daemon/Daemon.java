@@ -19,7 +19,7 @@ public class Daemon {
 	private static final String DAEMON_BIN_NAME = "daemon";
 
 	public static final int INTERVAL_ONE_MINUTE = 60;
-	public static final int INTERVAL_ONE_HOUR = 60 * 60;
+	public static final int INTERVAL_ONE_HOUR = 3600;
 
 	/** start daemon */
 	private static void start(Context context, Class<?> daemonClazzName, int interval) {

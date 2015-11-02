@@ -19,8 +19,6 @@ import java.io.InputStream;
 public class Command {
 	private static final String TAG = Command.class.getSimpleName();
 
-	public static final String BIN_DIR_NAME = "bin";
-
 	/** copy file to destination */
 	private static void copyFile(File file, InputStream is, String mode)
 			throws IOException, InterruptedException {
@@ -36,23 +34,6 @@ public class Command {
 		is.close();
 
 		Runtime.getRuntime().exec("chmod " + mode + " " + abspath).waitFor();
-	}
-
-	/**
-	 * copy files in raw into destination file.
-	 *
-	 * @param  context context
-	 * @param  resid   the resource id of file in raw
-	 * @param  file    the file to copy to
-	 * @param  mode    mode of file
-	 *
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
-	public static void copyRawFile(Context context, int resid, File file, String mode)
-			throws IOException, InterruptedException {
-		final InputStream is = context.getResources().openRawResource(resid);
-		copyFile(file, is, mode);
 	}
 
 	/**
@@ -101,15 +82,5 @@ public class Command {
 			Log.e(TAG, "installBinary failed: " + e.getMessage());
 			return false;
 		}
-	}
-
-	/**
-	 * Install specified binary into /data/data/pakage-name/app-bin directory.
-	 *
-	 * @param context  context
-	 * @param filename file name
-	 */
-	public static void install(Context context, String filename) {
-		install(context, BIN_DIR_NAME, filename);
 	}
 }
