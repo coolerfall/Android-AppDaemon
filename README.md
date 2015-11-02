@@ -11,7 +11,7 @@ Usage
 
 Note
 ====
-This library dosen't work on all phones, such as xiaomi phones.
+This library dosen't work on all phones, such as xiaomi phones and Android 5.x.
 
 Download
 ========
