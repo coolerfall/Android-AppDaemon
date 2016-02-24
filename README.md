@@ -22,7 +22,7 @@ If you are building with Gradle, simply add the following line to the dependenci
 License
 =======
 
-    Copyright (C) 2015 Vincent Cheung
+    Copyright (C) 2015-2016 Vincent Cheung
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
