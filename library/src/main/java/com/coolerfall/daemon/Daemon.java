@@ -10,7 +10,7 @@ import java.io.IOException;
  * Daemon: service daemon.
  *
  * @author Vincent Cheung
- * @since  Jan. 19, 2015
+ * @since Jan. 19, 2015
  */
 public class Daemon {
 	private static final String TAG = Daemon.class.getSimpleName();
@@ -21,10 +21,12 @@ public class Daemon {
 	public static final int INTERVAL_ONE_MINUTE = 60;
 	public static final int INTERVAL_ONE_HOUR = 3600;
 
-	/** start daemon */
+	/**
+	 * start daemon
+	 */
 	private static void start(Context context, Class<?> daemonClazzName, int interval) {
 		String cmd = context.getDir(BIN_DIR_NAME, Context.MODE_PRIVATE)
-				.getAbsolutePath() + File.separator + DAEMON_BIN_NAME;
+			.getAbsolutePath() + File.separator + DAEMON_BIN_NAME;
 
 		/* create the command string */
 		StringBuilder cmdBuilder = new StringBuilder();
